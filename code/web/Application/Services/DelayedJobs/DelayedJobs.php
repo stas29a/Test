@@ -24,6 +24,22 @@ class DelayedJobs implements \Application\Interfaces\DelayedJobs
         $this->channel = $this->connection->channel();
     }
 
+    public function getQueueSize()
+    {
+        $size = 0;
+        $r = $this->channel->queue_declare('jobs', false, false, false, false);
+
+        if(is_array($r) && !empty($r[1]))
+            $size = $r[1];
+
+        return $size;
+    }
+
+    public function flushQueue()
+    {
+        $this->channel->queue_purge('jobs');
+    }
+
     public function publish(DelayedJob $delayedJob)
     {
         $this->channel->queue_declare('jobs', false, false, false, false);

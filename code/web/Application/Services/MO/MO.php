@@ -24,6 +24,21 @@ class MO implements \Application\Interfaces\MO
         $this->di = $di;
     }
 
+    public function getNotProcessedCount()
+    {
+        /** @var DelayedJobs $delayedJobs */
+        $delayedJobs = $this->di->get(DelayedJobs::class);
+        return $delayedJobs->getQueueSize();
+    }
+
+    public function flushNotProcessed()
+    {
+        /** @var DelayedJobs $delayedJobs */
+        $delayedJobs = $this->di->get(DelayedJobs::class);
+        $delayedJobs->flushQueue();
+    }
+
+
     /**
      * This method is just send job to daemon
      * @param MORequest $MORequest

@@ -15,4 +15,6 @@ interface DelayedJobs
 {
     public function publish(DelayedJob $delayedJob);
     public function subscribe(callable $callback);
+    public function getQueueSize();
+    public function flushQueue();
 }

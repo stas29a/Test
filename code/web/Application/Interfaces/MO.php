@@ -15,4 +15,6 @@ interface MO
 {
     public function handle(MORequest $MORequest);
     public function process(MORequest $MORequest);
+    public function getNotProcessedCount();
+    public function flushNotProcessed();
 }

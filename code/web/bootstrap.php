@@ -18,7 +18,7 @@ $builder->addDefinitions(__DIR__.'/config.php');
 $services = [
     Application\Interfaces\MO::class => object(Application\Services\MO\MO::class),
     Application\Interfaces\MOStatistics::class => object(Application\Services\MO\Statistics::class),
-    Application\Interfaces\Response::class => object(Application\Services\Response::class),
+    Application\Interfaces\Response::class => object(Application\Services\JSONResponse::class),
     Application\Interfaces\DelayedJobs::class => object(Application\Services\DelayedJobs\DelayedJobs::class),
     Application\Interfaces\Storage::class => object(Application\Services\Storage\Storage::class),
     \PDO::class => function(\DI\Container $container) {

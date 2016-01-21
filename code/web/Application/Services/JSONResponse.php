@@ -9,7 +9,7 @@
 namespace Application\Services;
 
 
-class Response implements \Application\Interfaces\Response
+class JSONResponse implements \Application\Interfaces\Response
 {
     protected $data;
 
