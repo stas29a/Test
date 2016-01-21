@@ -12,6 +12,7 @@ installpkg redis-server
 installpkg mysql-server
 installpkg apache2-utils
 installpkg apache2-suexec-custom
+installpkg rabbitmq-server
 
 echo "ServerName localhost" > /etc/apache2/conf-enabled/servername.conf
 a2enmod suexec
@@ -35,6 +36,9 @@ bootstrapdb(){
       created_at DATETIME,
       PRIMARY KEY(id)
     ) ;
+	ALTER TABLE mo
+	ADD INDEX mo_created_at_inx (created_at DESC)  COMMENT '';
+
 EOF
 }
 bootstrapdb
@@ -43,3 +47,6 @@ populate_db() {
     /tmp/populate_db 10000000| mysql -u root samtt
 }
 populate_db
+cd code/web/ && php composer.phar update
+php daemon.php
+

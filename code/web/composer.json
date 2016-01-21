@@ -1,0 +1,10 @@
+{
+  "require": {
+    "php-di/php-di": "*",
+    "videlalvaro/php-amqplib": "2.5.*",
+    "predis/predis": "*"
+  },
+  "autoload": {
+    "psr-4": {"Application\\": "Application/"}
+  }
+}
